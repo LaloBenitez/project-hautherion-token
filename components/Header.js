@@ -17,10 +17,9 @@ const Header = (props) => {
 
             <Menu.Menu position='right'>
                 <Link href='/about'>
-                    <a className='item'>About</a>
+                    <a className='item'>Connect Wallet</a>
                 </Link>
-                    
-                    <a className='item'><Icon name='add circle' /></a>
+                
             </Menu.Menu>
         </Menu>
     );
