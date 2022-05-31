@@ -5,7 +5,7 @@ import Link from 'next/link'
 const Header = (props) => {
     return (
         <Menu style={{ marginTop: '15px' }}>
-            <Link href='/about'>
+            <Link href='/'>
                 <a className='item'>Hautherion</a>
             </Link>
             
@@ -16,7 +16,10 @@ const Header = (props) => {
             
 
             <Menu.Menu position='right'>
-                    <a className='item'>Campaigns</a>
+                <Link href='/about'>
+                    <a className='item'>About</a>
+                </Link>
+                    
                     <a className='item'><Icon name='add circle' /></a>
             </Menu.Menu>
         </Menu>
