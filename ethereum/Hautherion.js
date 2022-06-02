@@ -2,7 +2,7 @@ import provider from "./provider";
 import hautherion from "./hautherion.json";
 import { ethers } from 'ethers';
 
-const HAUTHERION_ADDRESS = '0xeED8F926787a5018e5F997FAa780a0c4A155dc88'
+const HAUTHERION_ADDRESS = '0x9362b59726664D2Dd847140CADa14A8A92d45fdf'
 
 const instance = new ethers.Contract(
     HAUTHERION_ADDRESS,

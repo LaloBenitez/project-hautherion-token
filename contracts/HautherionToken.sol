@@ -9,7 +9,8 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 contract HautherionToken is ERC20Capped, ERC20Burnable {
     address payable owner;
     uint256 public blockReward;
-
+    mapping (address => uint256) addressFaucetCooldown;
+    
     constructor(uint256 cap, uint reward) ERC20("Hautherion", "HAUTH") ERC20Capped(cap * (10 ** decimals())) {
         _mint(msg.sender, 1000000 * (10 ** decimals()));
         owner = payable(msg.sender);
@@ -33,6 +34,13 @@ contract HautherionToken is ERC20Capped, ERC20Burnable {
           _mintMinerReward();
         }
         super._beforeTokenTransfer(from, to, value);
+    }
+
+    function receiveTenTokens() public {
+        // Cooldown of 604800 seconds (7 days) before receiving tokens again.
+        require((block.timestamp - addressFaucetCooldown[msg.sender]) > 604800, "You cannot retrieve tokens yet.");
+        addressFaucetCooldown[msg.sender] = block.timestamp;
+        _mint(msg.sender, 10 * (10 ** decimals()));
     }
 
     function getBlockReward() public view returns (uint256) {

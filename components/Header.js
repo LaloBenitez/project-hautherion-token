@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 function Header() {
-
     const [walletAddress, setWalletAddress] = useState([]);
 
     async function requestAccount() {

@@ -1,12 +1,11 @@
 import { ethers } from 'ethers';
 
 let provider;
-let accounts;
 
 // Because in the Node.js world, window is not defined, window is only available in browsers.
 if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
     // We are in the browser and metamask is running.
-    // accounts = window.ethereum.request({ method: "eth_requestAccounts" }).then({
+    // accounts = window.ethereum.request({ method: "eth_requestAccounts" })
 
     // });
     provider = new ethers.providers.Web3Provider(window.ethereum);
