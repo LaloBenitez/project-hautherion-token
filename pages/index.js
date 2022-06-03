@@ -36,11 +36,11 @@ class CampaignIndex extends React.Component {
         <h1>{ this.props.tokenTicker }</h1>
         <h1> 0x9362b59726664D2Dd847140CADa14A8A92d45fdf</h1>
         <Link href="https://app.uniswap.org/#/swap/0x9362b59726664D2Dd847140CADa14A8A92d45fdf?exactField=input&exactAmount=10&use=v1">
-          <Button primary>Trade on Uniswap</Button>
+          <a><Button primary>Trade on Uniswap</Button></a>
         </Link>
         
         <Link href="https://rinkeby.etherscan.io/token/0x9362b59726664D2Dd847140CADa14A8A92d45fdf">
-          <Button secondary>View on etherscan</Button>
+          <a><Button secondary>View on etherscan</Button></a>
         </Link>
 
         <Button onClick={this.onClick} primary>Receive 10 tokens (gas fees apply)</Button>
