@@ -9,13 +9,14 @@ function Header() {
     async function requestAccount() {
         if(window.ethereum) {
             console.log('detected');
-    
+
             try {
                 const accounts = await window.ethereum.request({
                     method: "eth_requestAccounts",
                 })
                 console.log(accounts);
-                setWalletAddress('Connected wallet:' + accounts[0]);
+                let displayAccount = breakAddress(accounts[0]);
+                setWalletAddress('Connected wallet:' + displayAccount);
             } catch (err) {
                 console.log('Error connecting...')
             }
@@ -24,14 +25,17 @@ function Header() {
         }
     }
 
+    function breakAddress(addr) {
+        return addr.substr(0,5) + '...' + addr.substr(addr.length - 4, addr.length);
+    }
+
     async function connectWallet() {
         if(typeof window.ethereum !== 'undefined') {
             await requestAccount();
         }
     }
 
-    return (
-        
+    return (       
         <Menu secondary style={{ marginTop: '15px' }}>
             <Link href='/'>
                 <a className='item'>Hautherion</a>
@@ -44,8 +48,6 @@ function Header() {
             <Link href='/about'>
                 <a className='item'>About</a>
             </Link>
-
-            
 
             <Menu.Menu position='right'>  
                 <Menu.Item>
