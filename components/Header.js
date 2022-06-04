@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 function Header() {
-    const [walletAddress, setWalletAddress] = useState([]);
+    const [walletAddress, setWalletAddress] = useState(['No Wallet found']);
 
     async function requestAccount() {
         if(window.ethereum) {
@@ -15,7 +15,7 @@ function Header() {
                     method: "eth_requestAccounts",
                 })
                 console.log(accounts);
-                setWalletAddress(accounts[0]);
+                setWalletAddress('Connected wallet:' + accounts[0]);
             } catch (err) {
                 console.log('Error connecting...')
             }
@@ -31,22 +31,32 @@ function Header() {
     }
 
     return (
-        <Menu style={{ marginTop: '15px' }}>
+        
+        <Menu secondary style={{ marginTop: '15px' }}>
             <Link href='/'>
                 <a className='item'>Hautherion</a>
             </Link>
-            
-            <Link href='https://github.com/LaloBenitez/project-hautherion-token'>
-                <a className='item'><Icon name ='github' />Source code</a>
+
+            <Link href='/faucet'>
+                <a className='item'>Faucet</a>
             </Link>
 
-            <h6>Wallet Address: {walletAddress}</h6>
-                
+            <Link href='/about'>
+                <a className='item'>About</a>
+            </Link>
+
             
 
-            <Menu.Menu position='right'>
-                <Button onClick={requestAccount} basic color='orange'>Connect Wallet</Button>
+            <Menu.Menu position='right'>  
+                <Menu.Item>
+                    <h6>{walletAddress}</h6>
+                </Menu.Item>
                 
+                <Menu.Item
+                    name='signup'
+                >
+                    <Button size='mini' onClick={requestAccount} basic color='orange'>Connect Wallet</Button>
+                </Menu.Item>
             </Menu.Menu>
         </Menu>
     );

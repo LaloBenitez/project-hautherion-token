@@ -1,14 +1,9 @@
 import React from 'react'
 import 'semantic-ui-css/semantic.min.css'
 import Layout from '../components/Layout'
-import { Button } from 'semantic-ui-react'
+import { Button, Grid, Image } from 'semantic-ui-react'
 import Link from 'next/link';
 import Hautherion from '../ethereum/Hautherion';
-import provider from '../ethereum/provider';
-import hautherion from "../ethereum/hautherion.json";
-import { ethers } from 'ethers';
-
-const HAUTHERION_ADDRESS = '0x9362b59726664D2Dd847140CADa14A8A92d45fdf'
 
 class CampaignIndex extends React.Component {
   static async getInitialProps() {
@@ -18,35 +13,27 @@ class CampaignIndex extends React.Component {
     return { tokenTicker }
   }
 
-  onClick = async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const HAUTHERION_ADDRESS = '0x9362b59726664D2Dd847140CADa14A8A92d45fdf';
-    const signer = provider.getSigner();
-    const instance = new ethers.Contract(
-        HAUTHERION_ADDRESS,
-        hautherion.abi,
-        signer
-    );
-    await instance.receiveTenTokens();
-  }
-
   render() {
     return (
       <Layout>
-        <h1>{ this.props.tokenTicker }</h1>
-        <h1> 0x9362b59726664D2Dd847140CADa14A8A92d45fdf</h1>
-        <Link href="https://app.uniswap.org/#/swap/0x9362b59726664D2Dd847140CADa14A8A92d45fdf?exactField=input&exactAmount=10&use=v1">
-          <a><Button primary>Trade on Uniswap</Button></a>
-        </Link>
-        
-        <Link href="https://rinkeby.etherscan.io/token/0x9362b59726664D2Dd847140CADa14A8A92d45fdf">
-          <a><Button secondary>View on etherscan</Button></a>
-        </Link>
+        <h1 style={{color: '#d3d3d6'}}>Hautherion Token ({ this.props.tokenTicker })</h1>
+        <h3 style={{color: '#d3d3d6'}}>The nicest, bestest, coolest, ERC20 Token ;)</h3>
+        <br/>
+        <Grid style={{ marginTop: '15px' }}>
+          <Grid.Column width={4}>
+            <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+          </Grid.Column>
+          <Grid.Column width={9}>
+            <h2 style={{color: '#d3d3d6'}}>Get Tokens!</h2>
+              <Link href="https://app.uniswap.org/#/swap/0x9362b59726664D2Dd847140CADa14A8A92d45fdf?exactField=input&exactAmount=10&use=v1">
+                <a><Button inverted color='pink'>Trade on Uniswap</Button></a>
+              </Link>
 
-        <Button onClick={this.onClick} primary>Receive 10 tokens (gas fees apply)</Button>
-        
-
-        
+              <Link href="faucet">
+                <a><Button link inverted color='gray'>HAUTH Faucet</Button></a>
+              </Link>
+          </Grid.Column>
+        </Grid>
       </Layout>
     )
   }
