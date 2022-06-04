@@ -4,16 +4,25 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #16191e;
   
 }
 
-body {
-  background-image: url("../assets/images/pexels-felix-mittermeier-956999.jpg");
+#__next {
+  background-image: url('../assets/images/background-wallpaper.gif');
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+
+.secondary.ui.secondary.menu a.item:hover {
+  background: #222230;
+  color: #c83136;
+}
+
+.secondary.ui.secondary.menu .item {
+  color: #c83136;
 }
 
 * {
