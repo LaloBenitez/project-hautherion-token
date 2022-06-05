@@ -1,7 +1,6 @@
 import React from 'react'
-import 'semantic-ui-css/semantic.min.css'
 import Layout from '../components/Layout'
-import { Button, Grid, Divider, Segment } from 'semantic-ui-react'
+import { Button, Grid } from 'semantic-ui-react'
 import Link from 'next/link';
 import Hautherion from '../ethereum/Hautherion';
 
