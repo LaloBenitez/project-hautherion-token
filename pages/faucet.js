@@ -1,12 +1,22 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react'
 import Layout from '../components/Layout'
-import { Button, Grid, List } from 'semantic-ui-react'
+import { Button, Grid, List, Message } from 'semantic-ui-react'
 import hautherion from "../ethereum/hautherion.json";
 import { ethers } from 'ethers';
 
 class CampaignIndex extends React.Component {
+  state = {
+    errorMessage: '',
+    errorMessageHidden: true,
+    successMessage: '',
+    successMessageHidden: true,
+    buttonLoading: false
+  }
+
   onClick = async () => {
+    this.onDismiss();
+    this.setState({ buttonLoading: true })
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const HAUTHERION_ADDRESS = '0x9362b59726664D2Dd847140CADa14A8A92d45fdf';
     const signer = provider.getSigner();
@@ -15,7 +25,28 @@ class CampaignIndex extends React.Component {
         hautherion.abi,
         signer
     );
-    await instance.receiveTenTokens();
+
+    this.setState({ buttonLoading: true })
+    try {
+      await instance.receiveTenTokens();
+      this.setState({ successMessage: 'Enjoy your HAUTH Tokens =)'})
+      this.setState({ successMessageHidden: false });
+    } catch (err) {
+      if(err.reason) {
+        this.setState({ errorMessage: err.reason });
+      }else {
+        this.setState({ errorMessage: err.message })
+      }
+      this.setState({ errorMessageHidden: false })
+    }
+    this.setState({ buttonLoading: false })
+  }
+
+  onDismiss = (event) => {
+    this.setState({ errorMessage: '' });
+    this.setState({ errorMessageHidden: true});
+    this.setState({ successMessage: '' });
+    this.setState({ successMessageHidden: true});
   }
 
   render() {
@@ -25,7 +56,16 @@ class CampaignIndex extends React.Component {
           <Grid.Row>
             <Grid.Column width={6}>
               <h1>HAUTH Faucet</h1>
-              <Button onClick={this.onClick} primary>Receive 10 tokens (gas fees apply)</Button>
+              <Button loading={ this.state.buttonLoading } onClick={this.onClick} primary>Receive 10 tokens (gas fees apply)</Button>
+              <Message negative onDismiss={ this.onDismiss } hidden={ this.state.errorMessageHidden }>
+                <Message.Header>Oops!</Message.Header>
+                <p style={{ color: '#912d2b'}}>{ this.state.errorMessage }</p>
+              </Message>
+
+              <Message positive onDismiss={ this.onDismiss } hidden={ this.state.successMessageHidden }>
+                <Message.Header>Success!</Message.Header>
+                <p style={{ color: '#1a531b'}}>{ this.state.successMessage }</p>
+              </Message>
             </Grid.Column>
             <Grid.Column width={8}>
               <h2> Instructions</h2>
@@ -39,10 +79,7 @@ class CampaignIndex extends React.Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </Layout>
-
-
-      
+      </Layout>      
     )
   }
 }
