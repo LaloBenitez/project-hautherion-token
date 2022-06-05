@@ -1,22 +1,28 @@
 import React from 'react';
 import { Icon, Menu, Button } from 'semantic-ui-react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Header() {
-    const [walletAddress, setWalletAddress] = useState(['No Wallet found']);
+   
+    const [walletAddress, setWalletAddress] = useState([]);
 
+    useEffect(() => {
+        setWalletAddress(window.localStorage.getItem('walletAddress'));
+      }, []);
+    
+    useEffect(() => {
+        window.localStorage.setItem('walletAddress', walletAddress);
+    }, [walletAddress]);
+    
     async function requestAccount() {
         if(window.ethereum) {
-            console.log('detected');
-
             try {
                 const accounts = await window.ethereum.request({
                     method: "eth_requestAccounts",
                 })
-                console.log(accounts);
                 let displayAccount = breakAddress(accounts[0]);
-                setWalletAddress('Connected wallet:' + displayAccount);
+                return setWalletAddress('Connected wallet:   ' + displayAccount);
             } catch (err) {
                 console.log('Error connecting...')
             }
@@ -51,13 +57,13 @@ function Header() {
 
             <Menu.Menu position='right'>  
                 <Menu.Item>
-                    <h6>{walletAddress}</h6>
+                    <h5>{walletAddress}</h5>
                 </Menu.Item>
                 
                 <Menu.Item
                     name='signup'
                 >
-                    <Button size='mini' onClick={requestAccount} basic color='orange'>Connect Wallet</Button>
+                    <Button onClick={requestAccount} color='orange'>Connect Wallet</Button>
                 </Menu.Item>
             </Menu.Menu>
         </Menu>

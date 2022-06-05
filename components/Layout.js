@@ -6,12 +6,15 @@ import { Container } from 'semantic-ui-react';
 const Layout = (props) => {
     return (
         <Container>
-            <Header />
-            {props.children}
-            <Footer />
+            <header>
+                <Header />
+            </header>
+            <div style={{ marginTop: '50px'}}>{props.children}</div>
+            <footer style={{ marginBot: '10%'}}>
+                <Footer />
+            </footer>
         </Container>
-        
-    );
+    )
 }
 
 export default Layout;
