@@ -16,9 +16,11 @@ class CampaignIndex extends React.Component {
           <br />
           <p>
             HAUTH was implemented following the ERC-20 token standard and currently runs on the Ethereum Rinkeby Test network.
-            It has a capped supply of 100 tokens and every time a transaction is mined, it rewards 25 HAUTH. This is a toy project
-            that I used to learn how to work with the ERC-20 standard as well as how to hook up a front end application, using ethers, with a deployed
+            It has a capped supply of 100 million tokens and every time a transaction is mined, it rewards 25 HAUTH. This is a toy project
+            that I used to learn how to work with the ERC-20 standard as well as how to hook up a front end application, using ethers.js, with a deployed
             smart contract. 
+            
+            Other tools that were used: Solidity (smart contract programming), Remix (online IDE), Hardhat (testing/deployment tools), Metamask (Ethereum wallet).
           </p>
         </div>
         
