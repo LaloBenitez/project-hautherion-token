@@ -1,34 +1,24 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+You can find the link to the website [here](https://project-hautherion-token.vercel.app/).
 
-First, run the development server:
+## About Hautherion Token
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+This is a toy project that I used to learn how to work with the ERC-20 standard as well as how to hook up a front end application, using ethers.js, with a deployed smart contract.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+HAUTH was implemented following the ERC-20 token standard and currently runs on the Ethereum Rinkeby Test network. It has a capped supply of 100 million tokens and every time a transaction is mined, it rewards 25 HAUTH.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Tools Utilized
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+These are the tools that were used to make this project:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- [Next.js](https://nextjs.org/docs/getting-started) (React framework)
+- [Solidity](https://docs.soliditylang.org/en/v0.8.14/) (smart contract programming)
+- [Remix](https://remix.ethereum.org) (online IDE)
+- [Hardhat](https://hardhat.org/getting-started) (testing/deployment tools)
+- [Metamask](https://metamask.io/) (Ethereum wallet)
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+The project is by no means on it's completed state, it still has some flaws and defects. Feel free to submit any issue or create any PR if you wish to improve this website.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
